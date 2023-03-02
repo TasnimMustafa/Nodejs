@@ -36,9 +36,10 @@ const deletePerson = (id) => {
 const readDataPerson = (id) => {
     const allPersons = persons();
     const Person = allPersons.find((person)=>{
-        return person.id === id
+        return person.id === id       
     })
-    console.log(Person);
+    console.log(Person ?? "This person does not exist");
+
 }
 
 const listDataPerson = () => {
@@ -56,11 +57,15 @@ const editDataPerson = (id,fname,lname,city,age) => {
     const PersonToEdit = allPersons.find((person)=>{
         return person.id === id
     })
-    console.log(PersonToEdit);
-    PersonToEdit.fname = fname;
-    PersonToEdit.lname = lname;
-    PersonToEdit.city = city;
-    PersonToEdit.age = age;
+    console.log(PersonToEdit ?? "This Person doesn't Exist");
+    if(PersonToEdit === undefined){
+      console.log("This Person doesn't Exist");
+    }else {
+        PersonToEdit.fname = fname;
+        PersonToEdit.lname = lname;
+        PersonToEdit.city = city;
+        PersonToEdit.age = age;
+    }
 
     convertPersons(allPersons)
 }

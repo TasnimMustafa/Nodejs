@@ -1,7 +1,16 @@
 const fs = require("fs");
 
-const addPerson = (id,fname,lname,city,age)=>{
+const addPerson = (id,fname,lname,city,age,sub1,sub2,sub3,sub4,sub5,sub6)=>{
     const allPersons = persons();
+
+     const arr = [sub1,sub2,sub3,sub4,sub5,sub6];
+     let total = 0;
+     let avg = 0;
+
+    arr.forEach(sub=>{
+        total += (+sub);
+        avg = Math.ceil(total/(arr.length));
+    })
 
     const filterPersons = allPersons.filter((person)=>{
         return person.id === id;
@@ -14,6 +23,8 @@ const addPerson = (id,fname,lname,city,age)=>{
         lname:lname,
         city:city,
         age:age,
+        total:total,
+        avg:avg,
     });
 
     convertPersons(allPersons);
@@ -46,7 +57,7 @@ const listDataPerson = () => {
     const allPersons = persons();
 
     allPersons.forEach((persons)=>{
-        console.log(persons.fname , persons.lname,"=>",persons.city)
+        console.log(persons.fname , persons.lname,"=>",persons.total)
     })
 }
 
